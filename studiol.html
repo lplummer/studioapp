@@ -1,0 +1,29 @@
+<head>
+	<title>studiol</title>
+</head>
+
+<body>
+	{{> hello}}
+</body>
+
+<template name="hello">
+	<h1>Hi!</h1>
+	{{greeting}}
+	<div>
+		<input type = "text" class = "start span5" value = "start time"/>
+		<input type = "text" class = "end span5" value = "end time"/>
+		<input type="button" value="add session" />
+	</div>
+	<div class = "sessions">
+		{{#each sessions}}
+			{{> session}}
+		{{/each}}
+	</div>
+</template>
+
+<template name="session">
+	<div class="session">
+		<span class="group">{{group}}</span>
+		<span class="start">{{start}}</span>
+		<span class="end">{{end}}</span>
+</template>
