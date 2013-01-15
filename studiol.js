@@ -1,5 +1,4 @@
 Sessions = new Meteor.Collection("sessions");
-user = "default"
 
 if (Meteor.isClient) {
 	Template.hello.greeting = function () {
@@ -7,13 +6,20 @@ if (Meteor.isClient) {
 	};
   
 	Template.hello.events({
-		'click input' : function (event, template) {
+		'click input.add' : function () {
 			// template data, if any, is available in 'this'
+			var start_time = this.find("start").value;
+			var end_time = this.find("end").value;		
+			Sessions.insert({group: "logs", start: start_time, end: end_time});
 			if (typeof console !== 'undefined')
-				console.log("You pressed the button");
-			var start_time = template.find(".start");
-			var end_time = template.find(".end");		
-			Sessions.insert({group: user, start: start_time, end: end_time});
+				console.log("scheduled!");
+				console.log(end_time);
+		},
+		'click input.cancel' : function () {
+			// template data, if any, is available in 'this'
+			Sessions.remove({});
+			if (typeof console !== 'undefined')
+				console.log("cancelled");
 		}
 	});
   
@@ -24,6 +30,6 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
 	Meteor.startup(function () {
-		// code to run on server at startup
+		Sessions.insert({group: "group", start: "start time", end: "end time"});
 	});
 }

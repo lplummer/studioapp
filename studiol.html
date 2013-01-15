@@ -10,11 +10,12 @@
 	<h1>Hi!</h1>
 	{{greeting}}
 	<div>
-		<input type = "text" class = "start span5" value = "start time"/>
-		<input type = "text" class = "end span5" value = "end time"/>
-		<input type="button" value="add session" />
+		<input type="text" class="start" value="start time"/>
+		<input type="text" class="end"/>
+		<input type="button" class="add" value="add session" />
+		<input type="button" class="cancel" value="cancel session" />
 	</div>
-	<div class = "sessions">
+	<div class="sessions">
 		{{#each sessions}}
 			{{> session}}
 		{{/each}}
@@ -23,7 +24,7 @@
 
 <template name="session">
 	<div class="session">
-		<span class="group">{{group}}</span>
-		<span class="start">{{start}}</span>
-		<span class="end">{{end}}</span>
+		<span>{{group}}</span>
+		<span>{{start}}</span>
+		<span>{{end}}</span>
 </template>
